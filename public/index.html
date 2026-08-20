@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reef Log</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="ocean" aria-hidden="true">
+  <div class="rays"></div>
+  <div class="bubbles" id="bubbles"></div>
+
+  <svg class="seabed" viewBox="0 0 1440 320" preserveAspectRatio="none">
+    <path class="water-line" d="M0,64L1440,32L1440,320L0,320Z"></path>
+  </svg>
+
+  <svg class="reef" viewBox="0 0 1440 260" preserveAspectRatio="none">
+    <!-- seaweed -->
+    <g class="weed weed-a"><path d="M120,260 C100,200 140,170 118,120 C100,80 130,50 116,20" /></g>
+    <g class="weed weed-b"><path d="M170,260 C190,210 155,175 178,130 C198,90 165,60 182,25" /></g>
+    <g class="weed weed-c"><path d="M1290,260 C1270,205 1310,170 1288,120 C1270,80 1300,45 1284,15" /></g>
+    <g class="weed weed-d"><path d="M1340,260 C1360,215 1322,175 1348,130 C1368,90 1332,55 1352,20" /></g>
+
+    <!-- coral clusters -->
+    <g class="coral coral-orange">
+      <circle cx="80" cy="250" r="26"/><circle cx="60" cy="235" r="18"/><circle cx="105" cy="238" r="16"/>
+    </g>
+    <g class="coral coral-pink">
+      <path d="M260,260 L245,205 L258,215 L262,190 L272,218 L282,200 L285,230 L296,215 L292,260 Z"/>
+    </g>
+    <g class="coral coral-purple">
+      <circle cx="1160" cy="248" r="22"/><circle cx="1182" cy="232" r="15"/><circle cx="1140" cy="238" r="14"/>
+    </g>
+    <g class="coral coral-orange">
+      <path d="M1380,260 L1365,200 L1378,212 L1382,182 L1394,214 L1404,194 L1408,228 L1420,210 L1416,260 Z"/>
+    </g>
+    <g class="anemone">
+      <circle cx="720" cy="255" r="10"/>
+      <path d="M700,255 Q695,225 705,200 M708,255 Q706,222 715,195 M718,256 Q718,220 718,190 M728,255 Q730,222 722,195 M736,255 Q741,225 731,200"/>
+    </g>
+  </svg>
+
+  <svg class="fish fish-1" viewBox="0 0 60 30"><path d="M2,15 C10,2 40,2 50,15 C40,28 10,28 2,15 Z M50,15 L60,6 L58,15 L60,24 Z"/><circle cx="14" cy="12" r="1.6"/></svg>
+  <svg class="fish fish-2" viewBox="0 0 60 30"><path d="M2,15 C10,2 40,2 50,15 C40,28 10,28 2,15 Z M50,15 L60,6 L58,15 L60,24 Z"/><circle cx="14" cy="12" r="1.6"/></svg>
+  <svg class="fish fish-3" viewBox="0 0 60 30"><path d="M2,15 C10,2 40,2 50,15 C40,28 10,28 2,15 Z M50,15 L60,6 L58,15 L60,24 Z"/><circle cx="14" cy="12" r="1.6"/></svg>
+</div>
+
+<main class="card">
+  <h1>Reef Log</h1>
+  <p class="subtitle">Log today's test results. Leave anything you didn't test blank.</p>
+
+  <form id="paramForm" novalidate>
+    <div class="field">
+      <label for="alkalinity">Alkalinity <span class="unit">dKH</span></label>
+      <input type="number" inputmode="decimal" step="0.01" min="0" id="alkalinity" name="alkalinity" placeholder="e.g. 8.30">
+    </div>
+    <div class="field">
+      <label for="phosphate">Phosphate <span class="unit">ppm</span></label>
+      <input type="number" inputmode="decimal" step="0.001" min="0" id="phosphate" name="phosphate" placeholder="e.g. 0.03">
+    </div>
+    <div class="field">
+      <label for="nitrate">Nitrate <span class="unit">ppm</span></label>
+      <input type="number" inputmode="decimal" step="0.1" min="0" id="nitrate" name="nitrate" placeholder="e.g. 5.0">
+    </div>
+    <div class="field">
+      <label for="calcium">Calcium <span class="unit">ppm</span></label>
+      <input type="number" inputmode="decimal" step="1" min="0" id="calcium" name="calcium" placeholder="e.g. 420">
+    </div>
+    <div class="field">
+      <label for="magnesium">Magnesium <span class="unit">ppm</span></label>
+      <input type="number" inputmode="decimal" step="1" min="0" id="magnesium" name="magnesium" placeholder="e.g. 1350">
+    </div>
+
+    <button type="submit" id="submitBtn">
+      <span class="btn-label">Log Parameters</span>
+    </button>
+    <div id="status" class="status" role="status" aria-live="polite"></div>
+  </form>
+</main>
+
+<script src="app.js"></script>
+</body>
+</html>

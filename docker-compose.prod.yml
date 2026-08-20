@@ -1,0 +1,9 @@
+services:
+  reef-log:
+    image: ghcr.io/spaceavenger/reef_log:latest
+    container_name: reef-log
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env
