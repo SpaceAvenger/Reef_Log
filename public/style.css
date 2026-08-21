@@ -141,6 +141,50 @@ body {
   transform-origin: bottom center;
 }
 
+.coral-brain { opacity: 0.92; }
+.coral-brain .dome { fill: #c9d94a; }
+.coral-brain .groove {
+  fill: none;
+  stroke: #8fa02c;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+}
+
+.coral-staghorn {
+  opacity: 0.9;
+  fill: none;
+  stroke: #c9642f;
+  stroke-width: 7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.coral-fan {
+  opacity: 0.85;
+  transform-origin: bottom center;
+  animation: sway 6.5s ease-in-out infinite;
+  animation-delay: -3s;
+}
+.coral-fan .stem {
+  fill: none;
+  stroke: #b06bd6;
+  stroke-width: 5;
+  stroke-linecap: round;
+}
+.coral-fan .web {
+  fill: none;
+  stroke: #d9a6ef;
+  stroke-width: 2;
+  stroke-linecap: round;
+  opacity: 0.8;
+}
+
+.coral-tube {
+  opacity: 0.92;
+  fill: #a6539e;
+}
+.coral-tube rect:nth-child(2n) { fill: #c471ba; }
+
 .fish {
   position: absolute;
   width: 46px;
@@ -155,6 +199,50 @@ body {
 .fish-2 path { fill: #ff6f9c; }
 .fish-3 { top: 15%; width: 26px; animation: swim-right 22s linear infinite; animation-delay: -12s; }
 .fish-3 path { fill: #7dd8ff; }
+.fish-4 { top: 47%; width: 34px; animation: swim-left 29s linear infinite; animation-delay: -4s; }
+.fish-4 path { fill: #c792ff; }
+.fish-5 { top: 30%; width: 22px; animation: swim-right 19s linear infinite; animation-delay: -15s; }
+.fish-5 path { fill: #ffe36e; }
+
+/* ---------- Shark ---------- */
+
+.shark {
+  width: 92px;
+  top: 58%;
+  opacity: 0.5;
+  animation: swim-left 55s linear infinite;
+  animation-delay: -20s;
+}
+.shark .body,
+.shark .tail,
+.shark .dorsal,
+.shark .pectoral { fill: #5b7480; }
+.shark .gill {
+  fill: none;
+  stroke: #3c4f58;
+  stroke-width: 1.5;
+}
+.shark .eye { fill: #1a2226; }
+
+/* ---------- Schooling fish ---------- */
+
+.school {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  top: 33%;
+  animation: swim-right 24s linear infinite;
+  animation-delay: -6s;
+}
+
+.school-fish {
+  position: absolute;
+  width: 15px;
+  height: auto;
+  opacity: 0.7;
+}
+.school-fish path { fill: #d7f4ff; }
+.school-fish circle { fill: #0a4d6b; }
 
 @keyframes swim-right {
   0% { left: -10%; transform: scaleX(-1); }
