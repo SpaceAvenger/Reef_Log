@@ -157,18 +157,18 @@ body {
 .fish-3 path { fill: #7dd8ff; }
 
 @keyframes swim-right {
-  0% { left: -10%; transform: scaleX(1); }
-  49% { transform: scaleX(1); }
-  50% { left: 105%; transform: scaleX(-1); }
-  99% { transform: scaleX(-1); }
-  100% { left: -10%; transform: scaleX(1); }
+  0% { left: -10%; transform: scaleX(-1); }
+  49% { transform: scaleX(-1); }
+  50% { left: 105%; transform: scaleX(1); }
+  99% { transform: scaleX(1); }
+  100% { left: -10%; transform: scaleX(-1); }
 }
 @keyframes swim-left {
-  0% { left: 105%; transform: scaleX(-1); }
-  49% { transform: scaleX(-1); }
-  50% { left: -10%; transform: scaleX(1); }
-  99% { transform: scaleX(1); }
-  100% { left: 105%; transform: scaleX(-1); }
+  0% { left: 105%; transform: scaleX(1); }
+  49% { transform: scaleX(1); }
+  50% { left: -10%; transform: scaleX(-1); }
+  99% { transform: scaleX(-1); }
+  100% { left: 105%; transform: scaleX(1); }
 }
 
 /* ---------- Card ---------- */
