@@ -39,7 +39,16 @@ if (!INFLUX_URL || !INFLUX_ORG || !INFLUX_BUCKET || !INFLUX_TOKEN) {
   process.exit(1);
 }
 
-const ALLOWED_FIELDS = ["alkalinity", "phosphate", "nitrate", "calcium", "magnesium"];
+// Request bodies use lowercase keys (matching the form field ids); InfluxDB
+// stores these fields capitalized, matching the existing measurement history.
+const FIELD_NAMES = {
+  alkalinity: "Alkalinity",
+  phosphate: "Phosphate",
+  nitrate: "Nitrate",
+  calcium: "Calcium",
+  magnesium: "Magnesium",
+};
+const ALLOWED_FIELDS = Object.keys(FIELD_NAMES);
 
 function formatFieldValue(value) {
   return Number.isInteger(value) ? `${value}.0` : `${value}`;
@@ -48,7 +57,7 @@ function formatFieldValue(value) {
 function toLineProtocol(fields) {
   const parts = ALLOWED_FIELDS
     .filter((name) => Object.prototype.hasOwnProperty.call(fields, name))
-    .map((name) => `${name}=${formatFieldValue(fields[name])}`);
+    .map((name) => `${FIELD_NAMES[name]}=${formatFieldValue(fields[name])}`);
   return `${INFLUX_MEASUREMENT} ${parts.join(",")}`;
 }
 
