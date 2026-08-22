@@ -363,6 +363,47 @@ button#submitBtn:disabled { opacity: 0.6; cursor: progress; transform: none; }
 .status.err { color: #ff9b9b; }
 .status.busy { color: var(--text-dim); }
 
+/* ---------- Toast ---------- */
+
+.toast {
+  position: fixed;
+  top: 24px;
+  left: 50%;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 240px;
+  max-width: min(90vw, 420px);
+  padding: 14px 20px;
+  border-radius: 12px;
+  font-size: 0.92rem;
+  font-weight: 600;
+  box-shadow: 0 14px 34px rgba(0, 10, 20, 0.45);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translate(-50%, -16px);
+  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0s linear 0.25s;
+}
+
+.toast.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, 0);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.toast.ok {
+  background: linear-gradient(135deg, #7cf7c2, #37d0ff);
+  color: #04302a;
+}
+
+.toast.err {
+  background: linear-gradient(135deg, #ffb3b3, #ff6f9c);
+  color: #3a0d12;
+}
+
 @media (max-width: 480px) {
   .card { padding: 26px 20px 22px; border-radius: 16px; }
   h1 { font-size: 1.5rem; }

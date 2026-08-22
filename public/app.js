@@ -26,10 +26,22 @@ const FIELDS = ["alkalinity", "phosphate", "nitrate", "calcium", "magnesium"];
 const form = document.getElementById("paramForm");
 const statusEl = document.getElementById("status");
 const submitBtn = document.getElementById("submitBtn");
+const toastEl = document.getElementById("toast");
+
+let toastTimer = null;
 
 function setStatus(message, kind) {
   statusEl.textContent = message;
   statusEl.className = "status" + (kind ? " " + kind : "");
+}
+
+function showToast(message, kind) {
+  clearTimeout(toastTimer);
+  toastEl.textContent = message;
+  toastEl.className = "toast " + kind + " show";
+  toastTimer = setTimeout(() => {
+    toastEl.classList.remove("show");
+  }, 4500);
 }
 
 form.addEventListener("submit", async (event) => {
@@ -61,10 +73,12 @@ form.addEventListener("submit", async (event) => {
       throw new Error(text || `Server responded ${res.status}`);
     }
 
-    setStatus("Logged ✓", "ok");
+    setStatus("", "");
+    showToast("✓ Saved to InfluxDB", "ok");
     form.reset();
   } catch (err) {
-    setStatus("Failed to log: " + err.message, "err");
+    setStatus("", "");
+    showToast("✗ Failed to reach InfluxDB — " + err.message, "err");
   } finally {
     submitBtn.disabled = false;
   }
