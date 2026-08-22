@@ -3,10 +3,23 @@ const express = require("express");
 const morgan = require("morgan");
 const path = require("path");
 
+const LOG_TIME_ZONE = "America/Denver";
+
+function timestamp() {
+  const now = new Date();
+  const datePart = now.toLocaleString("sv-SE", { timeZone: LOG_TIME_ZONE });
+  const tzAbbr = new Intl.DateTimeFormat("en-US", {
+    timeZone: LOG_TIME_ZONE,
+    timeZoneName: "short",
+  })
+    .formatToParts(now)
+    .find((p) => p.type === "timeZoneName").value;
+  return `${datePart} ${tzAbbr}`;
+}
+
 function log(level, message, meta) {
-  const ts = new Date().toISOString();
   const suffix = meta ? ` ${JSON.stringify(meta)}` : "";
-  const line = `${ts} [${level}] ${message}${suffix}`;
+  const line = `${timestamp()} [${level}] ${message}${suffix}`;
   if (level === "error") console.error(line);
   else if (level === "warn") console.warn(line);
   else console.log(line);
@@ -39,8 +52,12 @@ function toLineProtocol(fields) {
   return `${INFLUX_MEASUREMENT} ${parts.join(",")}`;
 }
 
+morgan.token("date", () => timestamp());
+
 const app = express();
-app.use(morgan("combined"));
+app.use(
+  morgan(':remote-addr - :remote-user [:date] ":method :url HTTP/:http-version" :status :res[content-length] ":referrer" ":user-agent"')
+);
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
 
